@@ -5,18 +5,18 @@ class Caneta:
     def __init__(self, cor) -> None:
         self.cordacaneta = ""
         self.tampa = False
-
-        if cor.lower() == "vermelha":
-            self.cordacaneta = "red"
-        if cor.lower() == "verde":
-            self.cordacaneta = "green"
-        if cor.lower() == "azul":
-            self.cordacaneta = "blue"
+        match cor.lower().strip():
+            case "vermelha":
+                self.cordacaneta = "[red]"
+            case "verde":
+                self.cordacaneta = "[green]"
+            case "azul":
+                self.cordacaneta = "[blue]"
         # print(f"A cor da caneta é {self.cordacaneta}")
 
 
     def quebra_linha(self, quebras):
-        print("\n"*quebras)
+        print("\n"*(quebras-1))
 
 
     def destampar(self):
@@ -26,9 +26,9 @@ class Caneta:
 
     def escrever(self, texto):
         if self.tampa == True:
-            print(f"[{self.cordacaneta}]{texto}")
+            print(f"{self.cordacaneta}{texto}")
         else:
-            print("Caneta tampada")
+            print(f":no_entry_sign: A {self.cordacaneta}Caneta[/] está tampada")
 
 
 c1 = Caneta("Azul")
@@ -37,9 +37,9 @@ c3 = Caneta("Vermelha")
 
 c1.destampar()
 c2.destampar()
-c3.destampar()
+#c3.destampar()
 
-c1.quebra_linha(2)
+c1.quebra_linha(1)
 
 c1.escrever("Olá Mundo!")
 c2.escrever("Olá, Gafanhoto")

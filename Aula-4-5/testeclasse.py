@@ -1,1 +1,1 @@
-print(int.__doc__)dsad
+print(int.__doc__)

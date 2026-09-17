@@ -15,9 +15,9 @@ class Gamer:
 
 
     def ficha(self):
-        fav = sorted(self.favoritos)
+        fav = sorted(self.favoritos, key=str.lower)
         texto = Align.left(f"Nome real: [white on blue]{self.nome}[/]\nJogos favoritos:\n:video_game: "+"\n:video_game: ".join(fav))
-        painel = Panel(texto, title=f"{self.nome} <{self.nick}>", width=50)
+        painel = Panel(texto, title=f"{self.nome} <{self.nick}>", width=40)
         print(painel)
 
 
