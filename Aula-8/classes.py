@@ -1,10 +1,16 @@
-class Pessoa:
+from abc import ABC, abstractmethod
+
+class Pessoa(ABC):
     def __init__(self, nome = "", idade = 0):
         self.nome = nome
         self.idade = idade
 
     def fazer_aniversario(self):
         self.idade += 1
+
+    @abstractmethod
+    def estudar(self):
+        pass
 
 
 class Aluno(Pessoa):
@@ -16,6 +22,9 @@ class Aluno(Pessoa):
     def fazer_matricula(self):
         print(f"O Aluno {self.nome} acabou de fazer a matrícula.")
 
+    def estudar(self):
+        print(f"{self.nome} está estudando {self.curso} na turma {self.turma}.")
+
 
 class Professor(Pessoa):
     def __init__(self, nome, idade, especialidade, nivel) -> None:
@@ -25,6 +34,9 @@ class Professor(Pessoa):
 
     def dar_aula(self):
         print(f"O Professor(a) {self.nome} começou a dar aula.")
+
+    def estudar(self):
+        print(f"{self.nome} é especialista em {self.especialidade} no {self.nivel}.")
         
 
 class Funcionario(Pessoa):
@@ -35,3 +47,6 @@ class Funcionario(Pessoa):
 
     def bater_ponto(self):
         print(f"{self.nome} acabou de bater o ponto.")
+
+    def estudar(self):
+        print(f"{self.nome} se especializa para a área de {self.setor}.")
