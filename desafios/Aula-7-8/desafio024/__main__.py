@@ -1,11 +1,15 @@
-from rich import print
-from classes import *
+from cafeteria import *
+
 
 def main():
-    p1 = Circulo(20)
+    bebida = Cafe()
+    bebida.preparar()
 
-    print(f"Perímetro = {p1.perimetro():.1f}")
-    print(f"Area = {p1.area():.1f}")
+    bebida2 = Cha()
+    bebida2.preparar()
+
+    bebida3 = Leite()
+    bebida3.preparar()
 
 if __name__ == "__main__":
     main()
