@@ -5,7 +5,7 @@ from rich import print
 
 class BebidaQuente(ABC):
     def __init__(self) -> None:
-        pass
+        super().__init__()
 
     def preparar(self):
         print("\n[blue]---------- Iniciando o Preparo ----------[/]\n")
