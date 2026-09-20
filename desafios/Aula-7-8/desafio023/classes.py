@@ -3,7 +3,7 @@ from math import pi
 
 
 class Poligono(ABC):
-    def __init__(self, qtd_lados = 4) -> None:
+    def __init__(self, qtd_lados) -> None:
         self.qtd_lados = qtd_lados
 
     @abstractmethod
@@ -15,8 +15,8 @@ class Poligono(ABC):
         pass
 
 class Quadrado(Poligono):
-    def __init__(self, lado) -> None:
-        super().__init__()
+    def __init__(self, lado = 1) -> None:
+        super().__init__(4)
         self.lado = lado
 
     def perimetro(self):
@@ -26,12 +26,12 @@ class Quadrado(Poligono):
         return self.lado ** 2
 
 class Circulo(Poligono):
-    def __init__(self, raio) -> None:
-        super().__init__()
+    def __init__(self, raio = 1) -> None:
+        super().__init__(0)
         self.raio = raio
 
-    def perimetro(self):
+    def perimetro(self) -> float:
         return 2 * pi * self.raio
 
-    def area(self):
+    def area(self) -> float:
         return pi * (self.raio ** 2)

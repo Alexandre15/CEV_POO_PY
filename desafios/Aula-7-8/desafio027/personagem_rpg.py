@@ -1,5 +1,5 @@
 from abc import ABC, abstractmethod
-from random import randint
+from random import randint, randrange
 
 from rich import print
 
@@ -16,13 +16,20 @@ class Personagem(ABC):
         pass
 
     def atacar(self, alvo, forca):
-        tm = len(self.golpes)
-        print(f"[green]{self.nome}[/]({self.vida}) atacou {alvo.nome}({alvo.vida}) com um [blue]{self.golpes[randint(0, tm-1)]}[/] força {forca}.")
-        dano = randint(0, forca)
-        alvo.receber_dano(dano)
+        if self.vida > 0 and alvo.vida > 0:
+            golpe = self.golpes[randrange(0, len(self.golpes))]
+            print(f"[green]{self.nome}[/]({self.vida}) atacou {alvo.nome}({alvo.vida}) com um [blue]{golpe}[/] força {forca}.")
+            alvo.receber_dano(forca)
+        else:
+            print(f"O ataque {self.nome} -> {alvo.nome} não pode acontecer.")
 
     def receber_dano(self, dano):
-        print(f"[blue]{self.nome}[/] recebeu [red]dano de {dano}![/]")
+        fator = randint(0, dano)
+        self.vida -= fator
+        self.vida = max(self.vida, 0) # essa expressão faz a mesma coisa que o if comentado abaixo 
+        #if self.vida < 0:
+        #    self.vida = 0
+        print(f"[blue]{self.nome}[/] recebeu [red]dano de {fator}![/]")
 
 
 class Guerreiro(Personagem):
@@ -31,7 +38,9 @@ class Guerreiro(Personagem):
         self.golpes = ["Soco", "Golpe giratório", "Espadada Grossa", "Garoto"]
 
     def curar(self):
-        print(f"[blue]{self.nome}[/] enrolou uma atadura nos ferimentos e [green]recuperou {randint(0, 100)} pontos[/] de vida.")
+        fator = randint(0, 100)
+        self.vida += fator
+        print(f"[blue]{self.nome}[/]({self.vida}) enrolou uma atadura nos ferimentos e [green]recuperou {fator} pontos[/] de vida.")
 
 
 class Mago(Personagem):
@@ -40,4 +49,6 @@ class Mago(Personagem):
         self.golpes = ["Poderzinho", "Varada", "A vara que raba", "Nós que know"]
 
     def curar(self):
-        print(f"[blue]{self.nome}[/] fez uma magia de cura e [green]recuperou {randint(0, 100)} pontos[/] de vida.")
+        fator = randint(0, 100)
+        self.vida += fator
+        print(f"[blue]{self.nome}[/]({self.vida}) fez uma magia de cura e [green]recuperou {fator} pontos[/] de vida.")
