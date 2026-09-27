@@ -1,5 +1,5 @@
-from rich import inspect
 from classes031 import *
+from rich import inspect
 
 
 def main():
