@@ -1,5 +1,3 @@
-from ast import Try
-
 from rich import print
 
 
